@@ -32,7 +32,7 @@ def gen_hexdigest(raw_password, algorithm=BCRYPT, salt=None):
         # bcrypt has a special salt
         if salt is None:
             salt = bcrypt.gensalt()
-        return (algorithm, salt, bcrypt.hashpw(raw_password, salt))
+        return (algorithm, salt, bcrypt.hashpw(raw_password.encode('utf-8'), salt.encode('utf-8')))
     raise ValueError('Unknown password algorithm')
 
 
