@@ -55,7 +55,7 @@ from itertools import chain
 import os, sys
 from request import Request, to_bytes, to_unicode
 
-from schematics.types.serializable import for_jsonschema, from_jsonschema
+
 
 import ujson as json
 
