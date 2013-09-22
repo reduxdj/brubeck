@@ -11,9 +11,9 @@ from schematics.types import (StringType,
 
 
 import auth
-from timekeeping import curtime
-from datamosh import OwnedModelMixin, StreamedModelMixin
-
+from timekeeping import curtime, MillisecondType
+from schematics.contrib.mongo import ObjectIdType
+from schematics.transforms import blacklist, whitelist
 import re
 
 
@@ -94,17 +94,17 @@ class User(Model):
 ### UserProfile
 ###
 
-class UserProfile(Model, OwnedModelMixin, StreamedModelMixin):
+class UserProfile(Model):
     """The basic things a user profile tends to carry. Isolated in separate
     class to keep separate from private data.
     """
     # Provided by OwnedModelMixin
-    #owner_id = ObjectIdField(required=True)
-    #owner_username = StringField(max_length=30, required=True)
+    owner_id = ObjectIdType(required=True)
+    owner_username = StringType(max_length=30, required=True)
 
     # streamable # provided by StreamedModelMixin now
-    #created_at = MillisecondField()
-    #updated_at = MillisecondField()
+    created_at = MillisecondType()
+    updated_at = MillisecondType()
 
     # identity info
     name = StringType(max_length=255)
