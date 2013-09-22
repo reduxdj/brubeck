@@ -1,0 +1,15 @@
+.DS_Store
+*.db
+*.pyc
+*.bak
+*.log
+*.*~
+MANIFEST
+build
+dist
+.rope*
+*.pid
+.*.swp
+.*.swo
+*.egg-info
+.tox
