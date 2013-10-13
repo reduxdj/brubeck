@@ -88,39 +88,3 @@ class User(Model):
         user = cls(username=username, email=email, date_joined=now)
         user.set_password(password)
         return user
-
-
-###
-### UserProfile
-###
-
-class UserProfile(Model, OwnedModelMixin, StreamedModelMixin):
-    """The basic things a user profile tends to carry. Isolated in separate
-    class to keep separate from private data.
-    """
-    # Provided by OwnedModelMixin
-    #owner_id = ObjectIdField(required=True)
-    #owner_username = StringField(max_length=30, required=True)
-
-    # streamable # provided by StreamedModelMixin now
-    #created_at = MillisecondField()
-    #updated_at = MillisecondField()
-
-    # identity info
-    name = StringType(max_length=255)
-    email = EmailType(max_length=100)
-    website = URLType(max_length=255)
-    bio = StringType(max_length=100)
-    location_text = StringType(max_length=100)
-    avatar_url = URLType(max_length=255)
-
-    class Options:
-        roles = {
-            'owner': blacklist('owner_id'),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(UserProfile, self).__init__(*args, **kwargs)
-
-    def __unicode__(self):
-        return u'%s' % (self.name)
